@@ -1,0 +1,6 @@
+const host = '34.70.29.91'
+const socketPath = ''
+const database = 'TaskManager'
+const user = 'root'
+const password = '1234'
+const port = '5432'
