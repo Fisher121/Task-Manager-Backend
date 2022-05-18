@@ -3,9 +3,11 @@ var express = require("express");
 
 const db = require("./DAO/Database") 
 const ProjectController = require("./controllers/ProjectController")
+const TaskController = require("./controllers/TaskController")
 
 var database = new db()
 var projectController = new ProjectController()
+var taskController = new TaskController()
 
 var app = express();
 
@@ -31,19 +33,17 @@ app.get("/project/:projID", async (req, res, next) => {
 });
 
 app.post("/project", (req, res, next) => {
-
-    console.log("post proj")
-   
+   projectController.InsertProject(req,res,database.pool)
 });
 
 app.put("/project/:projID", (req, res, next) => {
 
-    console.log("put proj")
+    projectController.PutProject(req,res,database.pool)
    
 });
 app.delete("/project/:projID", (req, res, next) => {
 
-    console.log("delete proj")
+    projectController.DeleteProject(req,res,database.pool)
    
 });
 
@@ -51,30 +51,30 @@ app.delete("/project/:projID", (req, res, next) => {
 
 app.get("/tasks/:projID", (req, res, next) => {
 
-    res.json("get tasks");
+    taskController.GetTaskByProjID(req,res,database.pool)
    
 })
 app.get("/task/:taskID", (req, res, next) => {
 
-    res.json("get task");
+    taskController.GetTaskByID(req,res,database.pool)
    
 });
 
 
 app.post("/task", (req, res, next) => {
 
-    console.log("post task")
+    taskController.InsertTask(req,res,database.pool)    
    
 });
 app.put("/task/:taskID", (req, res, next) => {
 
-    console.log("put task")
+    taskController.PutTask(req,res,database.pool)
    
 });
 
 app.delete("/task/:taskID", (req, res, next) => {
 
-    console.log("delete task")
+    taskController.DeleteTask(req,res,database.pool)
    
 });
 

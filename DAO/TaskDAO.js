@@ -1,8 +1,8 @@
-class ProjectDAO{
-    GetAllProjects(pool){
+class TaskDAO{
+    GetTaskByID(pool,taskID){
         return new Promise((resolve)=>{
-            const query = "SELECT * FROM PROJECT"
-            pool.query(query, [] , (error, result)=>{
+            const query = 'SELECT * FROM Tasks WHERE taskid = ?'
+            pool.query(query, [taskID] , (error, result)=>{
                 if(error) 
                     resolve(error)
                 else{
@@ -11,33 +11,9 @@ class ProjectDAO{
             })
         })
     }
-    GetProjectByID(pool,projectID){
+    GetTaskByProjID(pool,projID){
         return new Promise((resolve)=>{
-            const query = 'SELECT * FROM PROJECT WHERE projid = ?'
-            pool.query(query, [projectID] , (error, result)=>{
-                if(error) 
-                    resolve(error)
-                else{
-                    resolve(result)
-            }
-            })
-        })
-    }
-    InsertProject(pool,name){
-        return new Promise((resolve)=>{
-            const query = 'INSERT INTO PROJECT(name) VALUES (?)'
-            pool.query(query, [name] , (error, result)=>{
-                if(error) 
-                    resolve(error)
-                else{
-                    resolve(result)
-            }
-            })
-        })
-    }
-    DeleteProject(pool,projID){
-        return new Promise((resolve)=>{
-            const query = 'DELETE FROM PROJECT where projid = ?'
+            const query = 'SELECT * FROM Tasks WHERE projid = ?'
             pool.query(query, [projID] , (error, result)=>{
                 if(error) 
                     resolve(error)
@@ -47,10 +23,11 @@ class ProjectDAO{
             })
         })
     }
-    PutProject(pool,projID,name){
+    PutTask(pool,taskID,title,description){
+        console.log(taskID)
         return new Promise((resolve)=>{
-            const query = 'UPDATE PROJECT SET name = ? WHERE projid = ?'
-            pool.query(query, [name,projID] , (error, result)=>{
+            const query = 'UPDATE Tasks SET name = ?, description = ? WHERE taskid = ?'
+            pool.query(query, [title,description,taskID] , (error, result)=>{
                 if(error) 
                     resolve(error)
                 else{
@@ -59,7 +36,29 @@ class ProjectDAO{
             })
         })
     }
-
+    DeleteTask(pool,taskID){
+        return new Promise((resolve)=>{
+            const query = 'DELETE FROM Tasks WHERE taskid = ?'
+            pool.query(query, [taskID] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    InsertTask(pool,projID,name,description){
+        return new Promise((resolve)=>{
+            const query = 'INSERT INTO Tasks(projid,name,description) VALUES (?,?,?)'
+            pool.query(query, [projID,name,description] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
 }
-
-module.exports = ProjectDAO
+module.exports =  TaskDAO
