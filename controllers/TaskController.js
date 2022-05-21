@@ -1,14 +1,17 @@
 const { json } = require("express/lib/response")
 const { PassThrough } = require("stream")
 const task_service = require("../services/TaskService")
+const comment_service = require("../services/CommentService")
 const getReqData = require("../utils")
 
 class TaskController{
     constructor(){
         this.taskService = new task_service()
+        this.commentService = new comment_service()
     }
     async GetTaskByID(req,res,pool){
         var task = await this.taskService.GetTaskByID(pool,req.params.taskID)
+        task[0]["comments"] = await this.commentService.GetCommentByTaskID(pool,req.params.taskID)
         res.json(task)
     }
     async GetTaskByProjID(req,res,pool){

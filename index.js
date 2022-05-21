@@ -5,12 +5,13 @@ const db = require("./DAO/Database")
 const ProjectController = require("./controllers/ProjectController")
 const TaskController = require("./controllers/TaskController");
 const UserController = require("./controllers/UserController");
+const CommentController = require("./controllers/CommentController");
 
 var database = new db()
 var projectController = new ProjectController()
 var taskController = new TaskController()
 var userController = new UserController()
-
+var commentController = new CommentController() 
 var app = express();
 
 
@@ -95,9 +96,7 @@ app.patch("/task/:taskID", (req, res, next) => {
 
 //Comment endpoints
 app.post("/comment", (req, res, next) => {
-
-    console.log("post comment")
-   
+    commentController.AddComment(req,res,database.pool)
 });
 app.get("/comments/:taskID", (req, res, next) => {
 
