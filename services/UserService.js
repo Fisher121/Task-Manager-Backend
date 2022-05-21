@@ -10,5 +10,8 @@ class UserService{
     async Login(pool,email,password){
         return await this.UserDAO.Login(pool,email,password)
     }
+    async GetRole(pool,userid){
+        return await this.UserDAO.GetRole(pool,userid)
+    }
 }
 module.exports = UserService

@@ -19,5 +19,11 @@ class ProjectService{
     async PutProject(pool,projID,name){
         return await this.projectDAO.PutProject(pool,projID,name)
     }
+    async AddUserToProject(pool,projid,userid){
+        return await this.projectDAO.AddUserToProject(pool,projid,userid)
+    }
+    async GetProjectByuserID(pool,userid){
+        return await this.projectDAO.GetProjectByuserID(pool,userid)
+    }
 }
 module.exports = ProjectService

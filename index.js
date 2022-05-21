@@ -33,10 +33,17 @@ app.get("/project/:projID", async (req, res, next) => {
     var project = await projectController.GetProjectByID(database.pool,req)
     res.json(project)
 });
+app.get("/projects/:userid", async (req, res, next) => {
+
+    projectController.GetProjectByuserID(req,res,database.pool)
+});
 
 app.post("/project", (req, res, next) => {
    projectController.InsertProject(req,res,database.pool)
 });
+app.post("/project/add", (req, res, next) => {
+    projectController.AddUserToProject(req,res,database.pool)
+ });
 
 app.put("/project/:projID", (req, res, next) => {
 

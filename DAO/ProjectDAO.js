@@ -59,6 +59,31 @@ class ProjectDAO{
             })
         })
     }
+    AddUserToProject(pool,projid,userid){
+        console.log(projid)
+        return new Promise((resolve)=>{
+            const query = 'INSERT INTO ProjectAssignments(userid,projectid) VALUES(?,?)'
+            pool.query(query, [userid,projid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    GetProjectByuserID(pool,userid){
+        return new Promise((resolve)=>{
+            const query = 'SELECT * FROM PROJECT p JOIN ProjectAssignments pa ON p.projid = pa.projectid WHERE userid = ?'
+            pool.query(query, [userid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })  
+    }
 
 }
 
