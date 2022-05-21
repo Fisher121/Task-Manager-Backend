@@ -3,11 +3,13 @@ var express = require("express");
 
 const db = require("./DAO/Database") 
 const ProjectController = require("./controllers/ProjectController")
-const TaskController = require("./controllers/TaskController")
+const TaskController = require("./controllers/TaskController");
+const UserController = require("./controllers/UserController");
 
 var database = new db()
 var projectController = new ProjectController()
 var taskController = new TaskController()
+var userController = new UserController()
 
 var app = express();
 
@@ -115,12 +117,12 @@ app.patch("/comment/:commentID", (req, res, next) => {
 //User Endpoints
 app.post("/register", (req, res, next) => {
 
-    console.log("register user")
+    userController.Register(req,res,database.pool)
    
 });
 app.post("/login", (req, res, next) => {
 
-    console.log("login user")
+    userController.Login(req,res,database.pool)
    
 });
 app.listen(800, () => {
