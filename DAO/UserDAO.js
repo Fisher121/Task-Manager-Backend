@@ -35,6 +35,30 @@ class UserDAO{
             })
         })
     }
+    GetUsers(pool){
+        return new Promise((resolve)=>{
+            const query = 'SELECT userid,username FROM USERS WHERE role = 0'
+            pool.query(query, [] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    GetUsername(pool,userid){
+        return new Promise((resolve)=>{
+            const query = 'SELECT username FROM USERS WHERE userid = ?'
+            pool.query(query, [userid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
 
 }
 

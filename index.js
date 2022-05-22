@@ -90,7 +90,7 @@ app.delete("/task/:taskID", (req, res, next) => {
 
 app.patch("/task/:taskID", (req, res, next) => {
 
-    console.log("patch task")
+    taskController.PatchTask(req,res,database.pool)
    
 });
 
@@ -131,6 +131,9 @@ app.post("/login", (req, res, next) => {
     userController.Login(req,res,database.pool)
    
 });
+app.get("/users",(req,res,next) =>{
+    userController.GetUsers(req,res,database.pool)
+})
 app.listen(800, () => {
 
  console.log("Server running on port 800");

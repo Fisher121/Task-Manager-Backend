@@ -24,7 +24,6 @@ class TaskDAO{
         })
     }
     PutTask(pool,taskID,title,description){
-        console.log(taskID)
         return new Promise((resolve)=>{
             const query = 'UPDATE Tasks SET name = ?, description = ? WHERE taskid = ?'
             pool.query(query, [title,description,taskID] , (error, result)=>{
@@ -52,6 +51,54 @@ class TaskDAO{
         return new Promise((resolve)=>{
             const query = 'INSERT INTO Tasks(projid,name,description) VALUES (?,?,?)'
             pool.query(query, [projID,name,description] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    PatchStatus(pool,taskid,status){
+        return new Promise((resolve)=>{
+            const query = 'UPDATE Tasks SET status = ? WHERE taskid = ?'
+            pool.query(query, [status,taskid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    PatchUserID(pool,taskid,userid){
+        return new Promise((resolve)=>{
+            const query = 'UPDATE Tasks SET userid = ? WHERE taskid = ?'
+            pool.query(query, [userid,taskid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    PatchDescription(pool,taskid,description){
+        return new Promise((resolve)=>{
+            const query = 'UPDATE Tasks SET description = ? WHERE taskid = ?'
+            pool.query(query, [description,taskid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        })
+    }
+    PatchName(pool,taskid,name){
+        return new Promise((resolve)=>{
+            const query = 'UPDATE Tasks SET name = ? WHERE taskid = ?'
+            pool.query(query, [name,taskid] , (error, result)=>{
                 if(error) 
                     resolve(error)
                 else{

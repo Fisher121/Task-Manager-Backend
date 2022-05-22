@@ -15,6 +15,8 @@ class UserController{
         body = JSON.parse(body)
         res.json(await this.userService.Login(pool,body.email,body.password)) 
     }
-    
+    async GetUsers(req,res,pool){
+        res.json(await this.userService.GetUsers(pool))
+    }
 }
 module.exports = UserController
