@@ -17,6 +17,9 @@ class TaskController{
     }
     async GetTaskByProjID(req,res,pool){
         var task = await this.taskService.GetTaskByProjID(pool,req.params.projID)
+        for(var i = 0;i<task.length;i++){
+            task[i]["username"] = await this.userService.GetUsername(pool,task[i]["userid"])
+        }
         res.json(task)
     }
     async PutTask(req,res,pool){
