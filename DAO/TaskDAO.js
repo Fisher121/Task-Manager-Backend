@@ -47,10 +47,11 @@ class TaskDAO{
             })
         })
     }
-    InsertTask(pool,projID,name,description){
+    InsertTask(pool,projID,name,description,userid){
+        console.log("inserting task ")
         return new Promise((resolve)=>{
-            const query = 'INSERT INTO Tasks(projid,name,description) VALUES (?,?,?)'
-            pool.query(query, [projID,name,description] , (error, result)=>{
+            const query = 'INSERT INTO Tasks(projid,name,description,userid,status) VALUES (?,?,?,?,"To Do")'
+            pool.query(query, [projID,name,description,userid] , (error, result)=>{
                 if(error) 
                     resolve(error)
                 else{

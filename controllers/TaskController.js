@@ -35,8 +35,7 @@ class TaskController{
     async InsertTask(req,res,pool){
         var body = await getReqData(req)
         body = JSON.parse(body)
-        await this.taskService.InsertTask(pool,body.projID,body.name,body.description)
-        res.end()
+        res.json(await this.taskService.InsertTask(pool,body.projID,body.name,body.description,body.userid))
     }
     async PatchTask(req,res,pool){
         var body = await getReqData(req)

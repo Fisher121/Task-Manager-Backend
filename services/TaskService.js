@@ -4,8 +4,8 @@ class TaskService{
     constructor(){
         this.TaskDAO = new task_dao()
     }
-    async InsertTask(pool,projID,name,description){
-        return await this.TaskDAO.InsertTask(pool,projID,name,description)
+    async InsertTask(pool,projID,name,description,userid){
+        return await this.TaskDAO.InsertTask(pool,projID,name,description,userid)
     }
     async GetTaskByID(pool,taskID){
         return await this.TaskDAO.GetTaskByID(pool,taskID)
