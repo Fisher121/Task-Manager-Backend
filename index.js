@@ -152,8 +152,8 @@ app.post("/login", (req, res, next) => {
 app.get("/users",(req,res,next) =>{
     userController.GetUsers(req,res,database.pool)
 })
-app.listen(8080, () => {
+app.listen(800, () => {
 
- console.log("Server running on port 8080");
+ console.log("Server running on port 800");
 
 });
