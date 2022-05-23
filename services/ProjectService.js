@@ -25,5 +25,8 @@ class ProjectService{
     async GetProjectByuserID(pool,userid){
         return await this.projectDAO.GetProjectByuserID(pool,userid)
     }
+    async GetUnassignedUsers(pool,projid){
+        return await this.projectDAO.GetUnassignedUsers(pool,projid)
+    }
 }
 module.exports = ProjectService

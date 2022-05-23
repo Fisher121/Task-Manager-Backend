@@ -46,6 +46,10 @@ class ProjectController{
         }
         //
     }
+    async GetUnassignedUsers(req,res,pool){
+        var users = await this.projectService.GetUnassignedUsers(pool,req.params.projID)
+        res.json(users)
+    }
 
 }
 module.exports = ProjectController

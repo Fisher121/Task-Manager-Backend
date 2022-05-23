@@ -34,6 +34,10 @@ app.get("/project/:projID", async (req, res, next) => {
     var project = await projectController.GetProjectByID(database.pool,req)
     res.json(project)
 });
+app.get("/project/unassigned/:projID", async (req, res, next) => {
+
+    projectController.GetUnassignedUsers(req,res,database.pool)
+});
 app.get("/projects/:userid", async (req, res, next) => {
 
     projectController.GetProjectByuserID(req,res,database.pool)
