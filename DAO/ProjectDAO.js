@@ -96,6 +96,18 @@ class ProjectDAO{
             })
         }) 
     }
+    GetAssignedUsers(pool,projid){
+        return new Promise((resolve)=>{
+            const query = 'SELECT userid,username FROM USERS WHERE role = 0 AND userid IN (SELECT userid FROM  ProjectAssignments WHERE projectid = ?)'
+            pool.query(query, [projid] , (error, result)=>{
+                if(error) 
+                    resolve(error)
+                else{
+                    resolve(result)
+            }
+            })
+        }) 
+    }
 
 }
 

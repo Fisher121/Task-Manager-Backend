@@ -50,6 +50,10 @@ class ProjectController{
         var users = await this.projectService.GetUnassignedUsers(pool,req.params.projID)
         res.json(users)
     }
+    async GetAssignedUsers(req,res,pool){
+        var users = await this.projectService.GetAssignedUsers(pool,req.params.projID)
+        res.json(users)
+    }
 
 }
 module.exports = ProjectController

@@ -12,6 +12,10 @@ class TaskController{
     async GetTaskByID(req,res,pool){
         var task = await this.taskService.GetTaskByID(pool,req.params.taskID)
         task[0]["comments"] = await this.commentService.GetCommentByTaskID(pool,req.params.taskID)
+        for(var i = 0;i<task[0]["comments"].length ; i++){
+            var username = await this.userService.GetUsername(pool,task[0]["comments"][i]["userid"])
+            task[0]["comments"][i]["username"] = username[0]["username"]
+        }
         task[0]["username"] = await this.userService.GetUsername(pool,task[0]["userid"])
         res.json(task)
     }

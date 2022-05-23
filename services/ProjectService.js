@@ -28,5 +28,8 @@ class ProjectService{
     async GetUnassignedUsers(pool,projid){
         return await this.projectDAO.GetUnassignedUsers(pool,projid)
     }
+    async GetAssignedUsers(pool,projid){
+        return await this.projectDAO.GetAssignedUsers(pool,projid)
+    }
 }
 module.exports = ProjectService

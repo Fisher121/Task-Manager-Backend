@@ -38,6 +38,10 @@ app.get("/project/unassigned/:projID", async (req, res, next) => {
 
     projectController.GetUnassignedUsers(req,res,database.pool)
 });
+app.get("/project/assigned/:projID", async (req, res, next) => {
+
+    projectController.GetAssignedUsers(req,res,database.pool)
+});
 app.get("/projects/:userid", async (req, res, next) => {
 
     projectController.GetProjectByuserID(req,res,database.pool)
