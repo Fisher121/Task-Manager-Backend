@@ -18,7 +18,7 @@ var cors = require('cors');
 
 const corsOptions = {
 
-    origin:'https://project-task-manager-9e914.web.app/', 
+    origin:'https://project-task-manager-9e914.web.app', 
     credentials:true,
     optionSuccessStatus:200
 }
